@@ -35,7 +35,7 @@
 
 // Default to Linux input system
 &uc {
-  default-mode = <UC_MODE_LINUX>;
+  default-mode = <UC_MODE_LINUX_ALT>;
 };
 
 // aliases
