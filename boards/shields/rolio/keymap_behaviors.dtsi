@@ -1,92 +1,71 @@
-/ {
+// tilde and backtick key
+ZMK_BEHAVIOR(tilde_bkt, mod_morph,
+    bindings = <&kp TILDE>, <&kp GRAVE>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+)
 
-    behaviors {
-        // Toggle Numbers layer
-        td1: Toggle_Numpad_MacOS {
-            display-name = "MacOS Symbols Tap Dance";
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <300>;
-            bindings = <&mo M_SYMBOLS>, <&tog NUMPAD>;
-        };
-        td2: Toggle_Numpad_Windows {
-            display-name = "Windows Symbols Tap Dance";
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <300>;
-            bindings = <&mo W_SYMBOLS>, <&tog NUMPAD>;
-        };
-        //Backlight Brightness
-        bri_adjust: Brightness_Scroller {
-            label = "Scroller Brightness Adjust";
-            compatible = "zmk,behavior-sensor-rotate";
-            #sensor-binding-cells = <0>;
-            bindings = <&bl BL_INC>, <&bl BL_DEC>;
-        };
-        // Encoder to Mouse Scroll
-        scroll_up_down: Mouse_Scroller {
-            label = "Scroller As Mouse Wheel";
-            compatible = "zmk,behavior-sensor-rotate";
-            #sensor-binding-cells = <0>;
-            bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
-            tap-ms = <20>;
-        };
-        // Hold to choose BT profile or tap for key press
-        btkp: btsel_or_kp {
-            display-name = "Bluetooth Select Or Key Press";
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <200>;
-            require-prior-idle-ms = <125>;
-            bindings = <&btsel>, <&kp>;
-        };
-        // Hold to select output or tap for key press
-        usb_tog: usb_tog {
-            display-name = "Set Output Or Key Press";
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <200>;
-            require-prior-idle-ms = <125>;
-            bindings = <&out>, <&kp>;
-        };
-        // Hold to clear BT connection or tap for key press
-        btclr_kp: btclr_kp {
-            display-name = "Bluetooth Profile Clear Or Key Press";
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <2000>;
-            bindings = <&btclrmacro>, <&kp>;
-        };
-        // Small volume steps for MacOS
-        mac_vol: Mac_Volume_Scroller {
-            label = "Scroller MacOS Small Volume Steps";
-            compatible = "zmk,behavior-sensor-rotate";
-            #sensor-binding-cells = <0>;
-            bindings = <&kp LS(LA(C_VOL_UP))>, <&kp LS(LA(C_VOL_DN))>;
-        };
-        // Behave like "mod-tap" without the keyrepeat
-        mtos: mtos {
-            display-name = "Mod-Tap (No Repeat)";
-            compatible = "zmk,behavior-hold-tap";
-            tapping-term-ms = <135>;
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            bindings = <&kpss>, <&kp>;
-        };
-        // Shift / Capsword
-         scw: scw {
-            display-name = "Hold Shift / Tap Capsword";
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <200>;
-            bindings = <&kp>, <&caps_word>;
-        };
-    };
+// tap dance for escape key: 1 for escape, 2 for home
+ZMK_BEHAVIOR(esc_hom, tap_dance,
+    tapping-term-ms = <200>;
+    bindings = <&kp ESC>, <&kp HOME>;
+)
 
-};
+// tap dance for sqt key: 1 for sqt, 2 for end, hold for control
+ZMK_BEHAVIOR(sqt_end, tap_dance,
+    tapping-term-ms = <200>;
+    bindings = <&mt RCTRL SQT>, <&kp END>;
+)
+
+// tap dance for control key: 1 for sticky control, 2 for sticky shift control
+ZMK_BEHAVIOR(st_ctr, tap_dance,
+    tapping-term-ms = <200>;
+    bindings = <&sk LCTRL>, <&sk LS(LCTRL)>;
+)
+
+// tap dance for shift keys: 1 for sticky shift, 2 for capsword
+ZMK_BEHAVIOR(st_sft, tap_dance,
+    tapping-term-ms = <200>;
+    bindings = <&sk LSHIFT>, <&caps_word>;
+)
+
+// tap dance for num-sym layer: 1 for sticky, 2 for toggle
+ZMK_BEHAVIOR(num_sym, tap_dance,
+    tapping-term-ms = <200>;
+    bindings = <&sl 1>, <&tog 1>;
+)
+
+// tap dance for f-nav layer: 1 for sticky, 2 for toggle
+ZMK_BEHAVIOR(fnav, tap_dance,
+    tapping-term-ms = <200>;
+    bindings = <&sl 2>, <&tog 2>;
+)
+
+// hold tap with sticky layer on the tap (used for super key below)
+ZMK_BEHAVIOR(sticky_tp, hold_tap,
+    tapping-term-ms = <200>;
+    bindings = <&kp>, <&sl>;
+)
+
+// tap dance for super key: 1 for sticky workspace layer, 2 for sticky super shift layer, 3 for sticky super control layer, and hold for super
+ZMK_BEHAVIOR(stk_sup, tap_dance,
+    tapping-term-ms = <200>;
+    bindings = <&sticky_tp LGUI 3>, <&sl 4>, <&sl 5>;
+)
+
+// tap dance for alt key: 1 for underscore, 2 for sticky alt, 3 for toggle settings layer
+ZMK_BEHAVIOR(und_alt, tap_dance,
+    tapping-term-ms = <200>;
+    bindings = <&kp LS(MINUS)>, <&sk LALT>, <&tog 6>;
+)
+
+// tap dance for left 'sometimes' key: 1 for copy, 2 for cut
+ZMK_BEHAVIOR(some_l, tap_dance,
+    tapping-term-ms = <200>;
+    bindings = <&kp LC(LS(C))>, <&kp LC(X)>;
+)
+
+// tap dance for right 'sometimes' key: 1 for paste, 2 for undo, 3 for toggle super control layer (to resize windows in river)
+ZMK_BEHAVIOR(some_r, tap_dance,
+    tapping-term-ms = <200>;
+    bindings = <&kp LC(LS(V))>, <&kp LC(Z)>, <&tog 5>;
+)

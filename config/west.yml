@@ -6,6 +6,8 @@ manifest:
       url-base: https://github.com/elpekenin
     - name: MickiusMousius
       url-base: https://github.com/MickiusMousius
+    - name: urob
+      url-base: https://github.com/urob
   projects:
     - name: zmk
       import: app/west.yml
@@ -16,6 +18,12 @@ manifest:
       revision: fcf2d9c7a9820e9447edfa5b23cd00538a611c8e
     - name: zmk-ls0xxvcom-driver
       remote: MickiusMousius
+      revision: main
+    - name: zmk-helpers
+      remote: urob
+      revision: main
+    - name: zmk-unicode
+      remote: urob
       revision: main
   self:
     path: config
