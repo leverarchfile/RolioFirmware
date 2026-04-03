@@ -1,10 +1,18 @@
 // Bluetooth profile macros with OS-specific unicode input mode
 ZMK_BEHAVIOR(bt_linux, macro,
-    bindings = <&bt BT_SEL 0>, <&uc UC_SET_LINUX_ALT>;
+    bindings = <&bt BT_SEL 0>, <&uc UC_SET_LINUX_ALT>, <&df LINUX>;
 )
 ZMK_BEHAVIOR(bt_macos, macro,
-    bindings = <&bt BT_SEL 1>, <&uc UC_SET_MACOS>;
+    bindings = <&bt BT_SEL 1>, <&uc UC_SET_MACOS>, <&df MACOS>;
 )
 ZMK_BEHAVIOR(bt_win, macro,
-    bindings = <&bt BT_SEL 2>, <&uc UC_SET_WIN_COMPOSE>;
+    bindings = <&bt BT_SEL 2>, <&uc UC_SET_WIN_COMPOSE>, <&df LINUX>;
+)
+
+// Default layer macros
+ZMK_BEHAVIOR(df_linux, macro,
+    bindings = <&uc UC_SET_LINUX_ALT>, <&df LINUX>;
+)
+ZMK_BEHAVIOR(df_macos, macro,
+    bindings = <&uc UC_SET_MACOS>, <&df MACOS>;
 )

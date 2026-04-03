@@ -31,13 +31,13 @@ ZMK_BEHAVIOR(st_sft, tap_dance,
 // tap dance for num-sym layer: 1 for sticky, 2 for toggle
 ZMK_BEHAVIOR(num_sym, tap_dance,
     tapping-term-ms = <200>;
-    bindings = <&sl 1>, <&tog 1>;
+    bindings = <&sl NUM_SYM>, <&tog NUM_SYM>;
 )
 
 // tap dance for f-nav layer: 1 for sticky, 2 for toggle
 ZMK_BEHAVIOR(fnav, tap_dance,
     tapping-term-ms = <200>;
-    bindings = <&sl 2>, <&tog 2>;
+    bindings = <&sl F_NAV>, <&tog F_NAV>;
 )
 
 // hold tap with sticky layer on the tap (used for super key below)
@@ -49,23 +49,35 @@ ZMK_BEHAVIOR(sticky_tp, hold_tap,
 // tap dance for super key: 1 for sticky workspace layer, 2 for sticky super shift layer, 3 for sticky super control layer, and hold for super
 ZMK_BEHAVIOR(stk_sup, tap_dance,
     tapping-term-ms = <200>;
-    bindings = <&sticky_tp LGUI 3>, <&sl 4>, <&sl 5>;
+    bindings = <&sticky_tp LGUI WRKSPC>, <&sl WRK_SFT>, <&sl WRK_CTR>;
 )
 
 // tap dance for alt key: 1 for underscore, 2 for sticky alt, 3 for toggle settings layer
 ZMK_BEHAVIOR(und_alt, tap_dance,
     tapping-term-ms = <200>;
-    bindings = <&kp LS(MINUS)>, <&sk LALT>, <&tog 6>;
+    bindings = <&kp LS(MINUS)>, <&sk LALT>, <&tog KB_SET>;
 )
 
-// tap dance for left 'sometimes' key: 1 for copy, 2 for cut
+// Linux: tap dance for left 'sometimes' key: 1 for copy, 2 for cut
 ZMK_BEHAVIOR(some_l, tap_dance,
     tapping-term-ms = <200>;
     bindings = <&kp LC(LS(C))>, <&kp LC(X)>;
 )
 
-// tap dance for right 'sometimes' key: 1 for paste, 2 for undo, 3 for toggle super control layer (to resize windows in river)
+// Linux: tap dance for right 'sometimes' key: 1 for paste, 2 for undo, 3 for toggle super control layer
 ZMK_BEHAVIOR(some_r, tap_dance,
     tapping-term-ms = <200>;
-    bindings = <&kp LC(LS(V))>, <&kp LC(Z)>, <&tog 5>;
+    bindings = <&kp LC(LS(V))>, <&kp LC(Z)>, <&tog WRK_CTR>;
+)
+
+// macOS: tap dance for left 'sometimes' key: 1 for copy, 2 for cut
+ZMK_BEHAVIOR(some_l_mac, tap_dance,
+    tapping-term-ms = <200>;
+    bindings = <&kp LG(C)>, <&kp LG(X)>;
+)
+
+// macOS: tap dance for right 'sometimes' key: 1 for paste, 2 for undo, 3 for toggle super control layer
+ZMK_BEHAVIOR(some_r_mac, tap_dance,
+    tapping-term-ms = <200>;
+    bindings = <&kp LG(V)>, <&kp LG(Z)>, <&tog WRK_CTR>;
 )
