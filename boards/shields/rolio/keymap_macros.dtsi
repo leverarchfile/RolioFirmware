@@ -1,1 +1,10 @@
-// Macros for future use (e.g. BT profile unicode mode switching)
+// Bluetooth profile macros with OS-specific unicode input mode
+ZMK_BEHAVIOR(bt_linux, macro,
+    bindings = <&bt BT_SEL 0>, <&uc UC_SET_LINUX_ALT>;
+)
+ZMK_BEHAVIOR(bt_macos, macro,
+    bindings = <&bt BT_SEL 1>, <&uc UC_SET_MACOS>;
+)
+ZMK_BEHAVIOR(bt_win, macro,
+    bindings = <&bt BT_SEL 2>, <&uc UC_SET_WIN_COMPOSE>;
+)
