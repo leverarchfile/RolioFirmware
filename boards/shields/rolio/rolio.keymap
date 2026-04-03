@@ -49,9 +49,9 @@
 #define R_BRACE         &kp RIGHT_BRACE
 #define L_BRACK         &kp LEFT_BRACKET
 #define R_BRACK         &kp RIGHT_BRACKET
-#define EM_DASH         &uc UC_EM_DASH 0
-#define EN_DASH         &uc UC_EN_DASH 0
-#define MULTIP          &uc UC_MULTIPLICATION_SIGN 0
+#define EM_DASH         &uc UC_EM_DASH
+#define EN_DASH         &uc UC_EN_DASH
+#define MULTIP          &uc UC_MULTIPLICATION_SIGN
 
 // Keymap
 ZMK_LAYER(base,
